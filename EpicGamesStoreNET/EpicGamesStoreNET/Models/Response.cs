@@ -74,6 +74,7 @@ namespace EpicGamesStoreNET.Models
         [JsonProperty(PropertyName = "path")]
         public string Path;
 
+        // Can't use string.Join effectively without this override
         public override string ToString()
         {
             return Path;
