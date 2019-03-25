@@ -3,9 +3,6 @@
 
 ### Overview
 This simple library is designed to allow programmers to programmatically search the Epic Games storefront. The response is modeled similar to the response that Epic's GraphQL response returns. Both synchronous and asynchronous query methods exist. This project also contains a test project that you can use as an example of how to use the library.
-
-This is a simple library designed to allow for the creation and accessing of Strawpolls in a really simple fashion. Synchronous and asynchrnous calls are available and all poll details (including vote counts) are returned when creating a new poll or fetching an existing poll.
-
 ### Test Project Sample
 ```
 Enter Epic Games Store query:
@@ -77,7 +74,7 @@ Available via Nuget: `Install-Package EpicGamesStoreNET`
 - EpicGamesStoreNETTest - This project is included in this repo as a master example project.
 
 ### Libraries Utilized
-- Newtonsoft.Json - JSON parsing class.  Used to parse responses from Strawpoll API
+- Newtonsoft.Json - JSON parsing class.  Used to parse responses from EpicGames store GraphQL API
 
 ### Contributors
  * Cole ([@swiftyspiffy](http://twitter.com/swiftyspiffy))
