@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>swiftyspiffy (Cole)</Authors>
+    <Company />
+    <Description>This simple library allows you to programmatically query the Epic Games store front. The response is modeled similar to the output from their GraphQL API endpoint. Both sync and async calls are supported. See Github project for a sample project.</Description>
+    <Copyright>Cole 2019</Copyright>
+    <PackageLicenseUrl>https://github.com/swiftyspiffy/EpicGamesStoreNET/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/swiftyspiffy/EpicGamesStoreNET</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/swiftyspiffy/EpicGamesStoreNET</RepositoryUrl>
+    <PackageTags>epic games fortnite store query api epicgames</PackageTags>
+    <PackageReleaseNotes>Initial release. Supports querying EpicGames storefront using both sync and async calls.</PackageReleaseNotes>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+</Project>
