@@ -1,5 +1,5 @@
 # EpicGamesStoreNET - .NET Library for Searching the Epic Games Store
-[![NuGet Pre Release](https://img.shields.io/nuget/vpre/StrawPollNET.svg)](https://www.nuget.org/packages/StrawPollNET)
+[![NuGet](https://img.shields.io/nuget/v/EpicGamesStoreNET.svg)](https://www.nuget.org/packages/EpicGamesStoreNET)
 
 ### Overview
 This simple library is designed to allow programmers to programmatically search the Epic Games storefront. The response is modeled similar to the response that Epic's GraphQL response returns. Both synchronous and asynchronous query methods exist. This project also contains a test project that you can use as an example of how to use the library.
