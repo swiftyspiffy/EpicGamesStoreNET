@@ -18,8 +18,7 @@ namespace EpicGamesStoreNET
 
         public static async Task<Models.Response> SearchAsync(string query)
         {
-            var uri = new Uri(query);
-            var encoded = uri.AbsoluteUri.Replace(":", "%3A");
+            var encoded = HttpUtility.UrlEncode(query).Replace(":", "%3A");
             var request = new Models.Request(encoded);
             var payload = JsonConvert.SerializeObject(request);
 
