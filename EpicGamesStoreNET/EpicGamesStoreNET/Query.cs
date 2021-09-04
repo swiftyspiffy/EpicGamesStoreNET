@@ -2,6 +2,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace EpicGamesStoreNET
 {
@@ -17,7 +18,9 @@ namespace EpicGamesStoreNET
 
         public static async Task<Models.Response> SearchAsync(string query)
         {
-            var request = new Models.Request(query);
+            var uri = new Uri(query);
+            var encoded = uri.AbsoluteUri.Replace(":", "%3A");
+            var request = new Models.Request(encoded);
             var payload = JsonConvert.SerializeObject(request);
 
             var method = new HttpMethod("POST");

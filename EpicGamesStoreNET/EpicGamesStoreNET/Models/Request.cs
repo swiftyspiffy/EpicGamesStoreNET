@@ -9,11 +9,8 @@ namespace EpicGamesStoreNET.Models
     public class Request
     {
         [JsonProperty(PropertyName = "query")]
-        private string _gqlQuery { get { return "\n        query searchQuery(\n            $namespace: String!, \n            $locale: String!, \n            $country: String!, \n            $query: String!,\n            \n    $hasCountryFilter: Boolean,\n    $filterCountry: String,\n    $filterAgeGroup: Int\n\n            )\n        { Catalog {\n            catalogOffers(namespace: $namespace, locale: $locale, params: {\n              keywords: $query,\n              country: $country\n            }, \ncountryAgeFilter: {\n    shouldCheck: $hasCountryFilter,\n    filterCountry: $filterCountry,\n    filterAgeGroup: $filterAgeGroup\n}\n) {\n                elements {\n                    url\n                    title\n                    id\n                    price(country: $country) {\n                        totalPrice {\n                            discountPrice\n                            originalPrice\n                            fmtPrice(locale:$locale) {\n                                originalPrice\n                                discountPrice\n                        }\n                        }\n                    }\n                    productSlug\n                    categories {\n                    path\n                    }\n                }\n            }\n          }\n        }"; } }
-        [JsonProperty(PropertyName = "headers")]
-        private Headers _headers { get { return new Headers();  } }
-        [JsonProperty(PropertyName = "method")]
-        private string _method { get { return "post";  } }
+        //
+        private string _gqlQuery { get { return "query searchStoreQuery($allowCountries: String, $category: String, $count: Int, $country: String!, $keywords: String, $locale: String, $namespace: String, $itemNs: String, $sortBy: String, $sortDir: String, $start: Int, $tag: String, $releaseDate: String, $withPrice: Boolean = false, $withPromotions: Boolean = false, $priceRange: String, $freeGame: Boolean, $onSale: Boolean, $effectiveDate: String) {\n  Catalog {\n    searchStore(\n      allowCountries: $allowCountries\n      category: $category\n      count: $count\n      country: $country\n      keywords: $keywords\n      locale: $locale\n      namespace: $namespace\n      itemNs: $itemNs\n      sortBy: $sortBy\n      sortDir: $sortDir\n      releaseDate: $releaseDate\n      start: $start\n      tag: $tag\n      priceRange: $priceRange\n      freeGame: $freeGame\n      onSale: $onSale\n      effectiveDate: $effectiveDate\n    ) {\n      elements {\n        title\n        id\n        namespace\n        description\n        effectiveDate\n        keyImages {\n          type\n          url\n        }\n        currentPrice\n        seller {\n          id\n          name\n        }\n        productSlug\n        urlSlug\n        url\n        tags {\n          id\n        }\n        items {\n          id\n          namespace\n        }\n        customAttributes {\n          key\n          value\n        }\n        categories {\n          path\n        }\n        catalogNs {\n          mappings(pageType: \"productHome\") {\n            pageSlug\n            pageType\n          }\n        }\n        offerMappings {\n          pageSlug\n          pageType\n        }\n        price(country: $country) @include(if: $withPrice) {\n          totalPrice {\n            discountPrice\n            originalPrice\n            voucherDiscount\n            discount\n            currencyCode\n            currencyInfo {\n              decimals\n            }\n            fmtPrice(locale: $locale) {\n              originalPrice\n              discountPrice\n              intermediatePrice\n            }\n          }\n          lineOffers {\n            appliedRules {\n              id\n              endDate\n              discountSetting {\n                discountType\n              }\n            }\n          }\n        }\n        promotions(category: $category) @include(if: $withPromotions) {\n          promotionalOffers {\n            promotionalOffers {\n              startDate\n              endDate\n              discountSetting {\n                discountType\n                discountPercentage\n              }\n            }\n          }\n          upcomingPromotionalOffers {\n            promotionalOffers {\n              startDate\n              endDate\n              discountSetting {\n                discountType\n                discountPercentage\n              }\n            }\n          }\n        }\n      }\n      paging {\n        count\n        total\n      }\n    }\n  }\n}\n"; } }
         [JsonProperty(PropertyName = "variables")]
         private Variables _variables { get; set; }
 
@@ -30,24 +27,26 @@ namespace EpicGamesStoreNET.Models
 
         private class Variables
         {
-            [JsonProperty(PropertyName = "namespace")]
-            private string _namespace { get { return "epic"; } }
-            [JsonProperty(PropertyName = "locale")]
-            private string _locale { get { return "en-US"; } }
-            [JsonProperty(PropertyName = "query")]
-            private string _query { get; set; }
+            [JsonProperty(PropertyName = "category")]
+            private string _category { get { return "games/edition/base|bundles/games|editors|software/edition/base"; } }
+            [JsonProperty(PropertyName = "keywords")]
+            private string _keywords { get; set; }
             [JsonProperty(PropertyName = "country")]
             private string _country { get { return "US"; } }
-            [JsonProperty(PropertyName = "hasCountryFilter")]
-            private bool _hasCountryFilter { get { return false; } }
-            [JsonProperty(PropertyName = "filterCountry")]
-            private string _filterCoutnry { get { return null; } }
-            [JsonProperty(PropertyName = "filterAgeGroup")]
-            private string _filterAgeGroup { get { return null; } }
+            [JsonProperty(PropertyName = "allowCountries")]
+            private string _allowCountries { get { return "US"; } }
+            [JsonProperty(PropertyName = "locale")]
+            private string _locale { get { return "en-US"; } }
+            [JsonProperty(PropertyName = "sortDir")]
+            private string _sortDir { get { return "DESC"; } }
+            [JsonProperty(PropertyName = "withPrice")]
+            private bool _withPrice { get { return true; } }
+            [JsonProperty(PropertyName = "withMapping")]
+            private bool _withMapping { get { return true; } }
 
             public Variables(string query)
             {
-                _query = query;
+                _keywords = query;
             }
         }
     }

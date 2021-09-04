@@ -16,9 +16,9 @@ namespace EpicGamesStoreNETTest
 
                 // async: EpicGamesStoreNET.Query.SearchAsync(query);
                 var resp = EpicGamesStoreNET.Query.Search(query);
-                var listings = resp.Data.Catalog.CatalogOffers.Elements;
+                var listings = resp.Data.Catalog.SearchStore.Elements;
 
-                Console.WriteLine($"Search results returned: {resp.Data.Catalog.CatalogOffers.Elements.Length}");
+                Console.WriteLine($"Search results returned: {listings.Length}");
                 Console.WriteLine("----------------");
                 foreach (var result in listings)
                 {
